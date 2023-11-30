@@ -9,8 +9,8 @@ rho_values = [0.1, 1, 10, 100]
 def main():
     rates = cp.Variable(24)
     rho = cp.Parameter(nonneg=True)
-    objective = cp.Minimize(cp.sum_squares(rates[1:] - rates[:-1]) + cp.square(rates[0] - rates[23]) + \
-                rho * (cp.sum(rates) - cp.sum(train_data * cp.log(rates))))
+    objective = cp.Minimize(rho * (cp.sum_squares(rates[1:] - rates[:-1]) + cp.square(rates[0] - rates[23])) + \
+                cp.sum(rates) - cp.sum(train_data * cp.log(rates)))
     constraints = [rates >= 0]
     prob = cp.Problem(objective, constraints)
     fig, axes = plt.subplots(2, 2)

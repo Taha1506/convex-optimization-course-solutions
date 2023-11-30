@@ -19,6 +19,7 @@ def main():
     plt.legend()
     plt.show()
     plt.savefig('result.png')
+    print(np.sqrt(((y - y_hat) ** 2).sum() / (y ** 2).sum()))
     
 
 
